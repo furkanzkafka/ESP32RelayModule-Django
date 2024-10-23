@@ -1,0 +1,14 @@
+certificates/
+Certificates/
+*.pem
+*.crt
+*.key
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+ESP32RelayDjango/.env
+.env.local
+db.sqlite3
+.DS_Store
+.env

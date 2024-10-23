@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Relay Control</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .control-button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 20px 0;
+        }
+        .control-button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .status {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .success {
+            background-color: #dff0d8;
+            color: #3c763d;
+        }
+        .error {
+            background-color: #f2dede;
+            color: #a94442;
+        }
+    </style>
+    <script>
+        function triggerRelay() {
+            const button = document.getElementById('triggerButton');
+            const status = document.getElementById('status');
+
+            button.disabled = true;
+            status.innerHTML = 'Sending command...';
+            status.className = 'status';
+
+            fetch('trigger/', {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                status.innerHTML = data.message;
+                status.className = 'status ' + (data.success ? 'success' : 'error');
+
+                setTimeout(() => {
+                    button.disabled = false;
+                }, 3000);
+            })
+            .catch(error => {
+                status.innerHTML = 'Error: ' + error.message;
+                status.className = 'status error';
+                button.disabled = false;
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>Relay Control Panel</h1>
+    {% csrf_token %}
+    <button id="triggerButton" class="control-button" onclick="triggerRelay()">
+        Trigger Relay
+    </button>
+    <div id="status" class="status"></div>
+</body>
+</html>
