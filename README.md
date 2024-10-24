@@ -152,7 +152,7 @@ esp32-relay-control/
 
 ## 📝 License
 
-[Your chosen license]
+MIT
 
 ## 🤝 Contributing
 
