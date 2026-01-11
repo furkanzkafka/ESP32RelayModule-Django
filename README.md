@@ -1,6 +1,6 @@
 # ESP32 Relay Control System
 
-A Django web application that controls an ESP32-based relay system through AWS IoT Core MQTT messaging. This system provides a secure and reliable way to remotely control relay operations through a web interface.
+A Django web application that controls an ESP32-based relay system through AWS IoT Core MQTT messaging. This system provides a secure and reliable way to remotely control relay operations through a web interface. Project mainly build for [lans](https://lans.app/about).
 
 ## 🔧 System Architecture
 
