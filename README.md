@@ -168,3 +168,7 @@ MIT
 - AWS IoT Core documentation
 - Django documentation
 - Paho MQTT library
+
+## Questions about the repository
+## Book a call
+https://cal.com/furkan-oz-zelsbf/30min
